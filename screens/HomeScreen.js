@@ -10,7 +10,6 @@ import {
   View,
 } from 'react-native';
 
-import { MonoText } from '../components/StyledText';
 
 export default function HomeScreen() {
   return (
@@ -47,10 +46,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    paddingTop: 10,
   },
   title: {
     fontSize: 34,
     fontWeight: 'bold',
-    margin: 20,
+    margin: 30,
   },
 });
