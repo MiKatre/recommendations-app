@@ -3,25 +3,31 @@ import {kebabCase} from './helpers'
 const url = 'http://127.0.0.1:5001'
 
 const processMovie = movie => ({
-  title: movie.Title,
-  poster: movie.Poster,
-  year: movie.Year,
-  type: movie.Type,
-  id: movie.imdbID,
+  title: movie.title,
+  poster: movie.poster_thumb.url,
+  year: movie.movie.release,
+  type: 'Film',
+  id: movie.id, // movie_t_id
 })
 
-export const getPage = async (input, offset) => {
+export const getPage = async (input, nextPage = null) => {
   try {
-    const result = await fetch(`http://www.omdbapi.com/?s=${input}&apikey=b7660e11&page=${offset}`)
+    let url = ''
+    if (nextPage) url = nextPage 
+    else url = `https://api.cinetimes.org/fr/movie?query=${input}`
+
+    console.log(url)
+
+    const result = await fetch(url)
     const page = await result.json()
     
-    if (typeof page.Search === 'undefined') {
+    if (page.count === 0) {
       return undefined
     }
 
     return {
-      data: page.Search.map(processMovie), 
-      nextPage: (offset < page.totalResults / 10) ? (offset + 1) : (undefined)
+      data: page.results.map(processMovie), 
+      nextPage: result.next,
     }
   } catch (err) {
     console.log(err)
@@ -29,16 +35,16 @@ export const getPage = async (input, offset) => {
 }
 
 export const fetchMovieData = async id => {
-  const response = await fetch(`https://www.omdbapi.com/?apikey=b7660e11&i=${id}`)
+  const response = await fetch(`https://api.cinetimes.org/fr/movie/${id}`)
   const result = await response.json()
 
   return {
-    title: result.Title,
-    poster: result.Poster,
-    storyline: result.Plot,
-    awards: result.Awards,
-    ratings: result.Ratings,
-    boxOffice: result.BoxOffice,
+    title: result.title,
+    poster: result.poster_thumb.url,
+    storyline: result.synopsis,
+    awards: null, //result.Awards,
+    ratings: null, // result.Ratings, result.avg_rating
+    boxOffice: result.movie.box_office,
   }
 }
 

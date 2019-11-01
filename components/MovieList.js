@@ -15,34 +15,43 @@ class MovieList extends React.Component {
 
 
   // Progressively add movies to state acording to user input
-  getMovieList = async (input, offset = 1) => {
-    const page = await getPage(input, offset)
-
-    // Set a max, else the recursive function will fetch them all
-    let maxPages = 1 // 10 results
+  getMovieList = async (input, nextPage = null) => {
+    const page = await getPage(input, nextPage)
     
     if (typeof page === 'undefined') return // If somewhy we don't receive a page
     if (this.state.input !== input) return // If user continued typing 
 
-    if (page.nextPage < maxPages) {
-      if (offset === 1) {
-        this.setState({ movies: page.data })
-        this.getMovieList(input, page.nextPage)
-      } else {
+    if (page.data.length) {
+      if (this.state.movies.length) {
         this.setState({ movies: removeDuplicate(this.state.movies.concat(page.data)) })
-        this.getMovieList(input, page.nextPage)
-      }
-    } else {
-      if (offset === 1) {
-        this.setState({ movies: page.data })
       } else {
-        this.setState({ movies: removeDuplicate(this.state.movies.concat(page.data)) })
+        this.setState({ movies: page.data })
       }
     }
+
+    if (page.nextPage && page.data.length < 50) {
+      this.getMovieList(input, page.nextPage)
+    }
+
+    // if (page.nextPage) {
+    //   if (!this.state.movies.length) {
+    //     this.setState({ movies: page.data })
+    //     this.getMovieList(input, page.nextPage)
+    //   } else {
+    //     this.setState({ movies: removeDuplicate(this.state.movies.concat(page.data)) })
+    //     this.getMovieList(input, page.nextPage)
+    //   }
+    // } else { // If no next page but results
+    //   if (!page.data.length) {
+    //     this.setState({ movies: page.data })
+    //   } else {
+    //     this.setState({ movies: removeDuplicate(this.state.movies.concat(page.data)) })
+    //   }
+    // }
   }
 
   handleIpnutChange = string => {
-    this.setState({input: string})
+    this.setState({input: string, movies: []})
     string.length > 3 ? this.getMovieList(string) : this.setState({movies: []})
     
   }
