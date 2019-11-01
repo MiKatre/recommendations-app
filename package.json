@@ -12,6 +12,8 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@emotion/core": "^10.0.22",
+    "@emotion/native": "^10.0.22",
     "@expo/samples": "~3.0.3",
     "@expo/vector-icons": "^10.0.3",
     "@react-navigation/web": "^1.0.0-alpha.9",

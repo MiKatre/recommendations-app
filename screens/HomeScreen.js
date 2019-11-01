@@ -10,15 +10,13 @@ import {
   View,
 } from 'react-native';
 
-
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <ScrollView
-        style={styles.container}
         contentContainerStyle={styles.contentContainer}>
 
-        <Text style={styles.title}>Regarder </Text>
+      <Text style={styles.title}>Regarder </Text>
 
       </ScrollView>
     </View>
@@ -45,12 +43,15 @@ function handleHelpPress() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    paddingTop: 10,
+    paddingTop: 15,
+    backgroundColor: '#1c1c1c',
   },
   title: {
-    fontSize: 34,
     fontWeight: 'bold',
-    margin: 30,
+    color: '#FFF',
+    fontSize: 34,
+    marginTop: 40,
+    marginLeft: 20,
   },
 });
+

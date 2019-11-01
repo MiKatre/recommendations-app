@@ -6,6 +6,8 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+// import MovieListScreen from '../screens/MovieListScreen';
+import MovieDetailsScreen from '../screens/MovieDetailsScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -15,9 +17,19 @@ const config = Platform.select({
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
+    // MovieDetails: MovieDetailsScreen,
   },
   config
 );
+
+const globalTabBarOptions = {
+  //other properties
+  pressColor: 'gray',//for click (ripple) effect color
+  style: {
+    backgroundColor: '#282828',
+    borderColor: '#282828',
+  }
+}
 
 HomeStack.navigationOptions = {
   tabBarLabel: 'Home',
@@ -31,6 +43,7 @@ HomeStack.navigationOptions = {
       }
     />
   ),
+  tabBarOptions: globalTabBarOptions,
 };
 
 HomeStack.path = '';
@@ -38,6 +51,7 @@ HomeStack.path = '';
 const LinksStack = createStackNavigator(
   {
     Links: LinksScreen,
+    MovieDetails: MovieDetailsScreen,
   },
   config
 );
@@ -47,6 +61,7 @@ LinksStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-search' : 'md-search'} />
   ),
+  tabBarOptions: globalTabBarOptions,
 };
 
 LinksStack.path = '';
@@ -68,6 +83,7 @@ SettingsStack.navigationOptions = {
         : 'md-notifications'
       } />
   ),
+  tabBarOptions: globalTabBarOptions,
 };
 
 SettingsStack.path = '';

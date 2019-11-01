@@ -2,6 +2,47 @@ import {kebabCase} from './helpers'
 
 const url = 'http://127.0.0.1:5001'
 
+const processMovie = movie => ({
+  title: movie.Title,
+  poster: movie.Poster,
+  year: movie.Year,
+  type: movie.Type,
+  id: movie.imdbID,
+})
+
+export const getPage = async (input, offset) => {
+  try {
+    const result = await fetch(`http://www.omdbapi.com/?s=${input}&apikey=b7660e11&page=${offset}`)
+    const page = await result.json()
+    
+    if (typeof page.Search === 'undefined') {
+      return undefined
+    }
+
+    return {
+      data: page.Search.map(processMovie), 
+      nextPage: (offset < page.totalResults / 10) ? (offset + 1) : (undefined)
+    }
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export const fetchMovieData = async id => {
+  const response = await fetch(`https://www.omdbapi.com/?apikey=b7660e11&i=${id}`)
+  const result = await response.json()
+
+  return {
+    title: result.Title,
+    poster: result.Poster,
+    storyline: result.Plot,
+    awards: result.Awards,
+    ratings: result.Ratings,
+    boxOffice: result.BoxOffice,
+  }
+}
+
+
 export const login = async (email, password) => {
   
   return 'faketoken'
