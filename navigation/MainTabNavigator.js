@@ -5,8 +5,7 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
-// import MovieListScreen from '../screens/MovieListScreen';
+import UserRatingsScreen from '../screens/UserRatingsScreen';
 import MovieDetailsScreen from '../screens/MovieDetailsScreen';
 
 const config = Platform.select({
@@ -57,7 +56,7 @@ const LinksStack = createStackNavigator(
 );
 
 LinksStack.navigationOptions = {
-  tabBarLabel: 'Search',
+  tabBarLabel: 'Rechercher',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-search' : 'md-search'} />
   ),
@@ -66,14 +65,14 @@ LinksStack.navigationOptions = {
 
 LinksStack.path = '';
 
-const SettingsStack = createStackNavigator(
+const UserRatingsStack = createStackNavigator(
   {
-    Settings: SettingsScreen,
+    Settings: UserRatingsScreen,
   },
   config
 );
 
-SettingsStack.navigationOptions = {
+UserRatingsStack.navigationOptions = {
   tabBarLabel: 'Mes notes',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon focused={focused}       
@@ -86,12 +85,12 @@ SettingsStack.navigationOptions = {
   tabBarOptions: globalTabBarOptions,
 };
 
-SettingsStack.path = '';
+UserRatingsStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
+  UserRatingsStack,
   LinksStack,
-  SettingsStack,
 });
 
 tabNavigator.path = '';

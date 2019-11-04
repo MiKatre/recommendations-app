@@ -88,11 +88,11 @@ class MovieDetailsScreen extends React.Component {
       //       {storyline}
       //     </Text>
       //   </View>
-        <View style={{ height: '100%' }}>
+        <View style={{ flex: 1 }}>
           <WebView
               originWhitelist={['*']}
               injectedJavaScript={runFirst}
-              source={{ uri: `https://5dc0156e9d4525018d31f2b7--cinetimes.netlify.com/${slug}?d=rnwebview` }}
+              source={{ uri: `https://5dc04ffecd9d620008e3f7bf--cinetimes.netlify.com/${slug}?d=rnwebview` }}
               style={{ marginTop: 0, flex: 1, height: '100%' }}
               onLoad={syntheticEvent => {
                 this.setState({isLoading: false})
