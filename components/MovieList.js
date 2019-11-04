@@ -57,9 +57,10 @@ class MovieList extends React.Component {
   }
 
   render() {
+    {/* placeholderTextColor={'#F1F1F1F1'} */}
     return (
       <View style={styles.container}> 
-        <TextInput style={styles.input} placeholder="Chercher un film" placeholderTextColor={'#F1F1F1F1'} value={this.state.input} onChangeText={this.handleIpnutChange} autoCapitalize="none"/> 
+        <TextInput style={styles.input} placeholder="Chercher un film"  value={this.state.input} onChangeText={this.handleIpnutChange} autoCapitalize="none"/>
         <SectionListMovies data={this.state.movies} navigation={this.props.navigation} />
       </View>
     )
@@ -73,9 +74,12 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#1c1c1c',
-    backgroundColor: '#282828',
-    color: "#FFF",
+    // borderColor: '#1c1c1c',
+    // backgroundColor: '#282828',
+    // color: "#FFF",
+    borderColor: '#e6e7e9',
+    backgroundColor: '#e6e7e9',
+    color: "#333",
     minWidth: 100,
     marginTop: 5,
     paddingHorizontal: 10,

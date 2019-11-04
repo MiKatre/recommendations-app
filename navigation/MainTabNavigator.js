@@ -24,10 +24,10 @@ const HomeStack = createStackNavigator(
 
 const globalTabBarOptions = {
   //other properties
-  pressColor: 'gray',//for click (ripple) effect color
+  // pressColor: 'gray',//for click (ripple) effect color
   style: {
-    backgroundColor: '#282828',
-    borderColor: '#282828',
+    // backgroundColor: '#282828',
+    // borderColor: '#282828',
   }
 }
 
@@ -74,13 +74,13 @@ const SettingsStack = createStackNavigator(
 );
 
 SettingsStack.navigationOptions = {
-  tabBarLabel: 'Notifications',
+  tabBarLabel: 'Mes notes',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon focused={focused}       
       name={
       Platform.OS === 'ios'
-        ? `ios-notifications${focused ? '' : '-outline'}`
-        : 'md-notifications'
+        ? `ios-journal` // ${focused ? '' : '-outline'}
+        : 'md-journal'
       } />
   ),
   tabBarOptions: globalTabBarOptions,

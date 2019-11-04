@@ -29,11 +29,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
-    backgroundColor: '#1c1c1c',
+    // backgroundColor: '#1c1c1c',
   },
   title: {
     fontWeight: 'bold',
-    color: '#FFF',
+    // color: '#FFF',
     fontSize: 34,
     marginTop: 40,
     marginLeft: 20,

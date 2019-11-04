@@ -26,7 +26,8 @@ const Row = props => (
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#282828',
+    // backgroundColor: '#282828',
+    backgroundColor: '#e6e7e9',
     marginTop: 10,
   },
   horizontal: {
@@ -45,10 +46,10 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: 'bold',
-    color: '#FFF',
+    // color: '#FFF',
   },
   meta: {
-    color: '#FFF',
+    // color: '#FFF',
   },
 })
 

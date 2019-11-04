@@ -40,6 +40,7 @@ export const fetchMovieData = async id => {
 
   return {
     title: result.title,
+    slug: result.slug,
     poster: result.poster_thumb.url,
     storyline: result.synopsis,
     awards: null, //result.Awards,
