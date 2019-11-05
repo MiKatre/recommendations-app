@@ -30,10 +30,11 @@ export default class HomeScreen extends React.Component {
 
   handleNavigation = event => {
     if (event.nativeEvent.data) {
-      const slug = event.nativeEvent.data
+      const {title, slug} = JSON.parse(event.nativeEvent.data)
       this.props.navigation.navigate('MovieDetails', {
         slug,
-        title: slug.split("-").join(" ").replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()}),
+        title,
+        // title: slug.split("-").join(" ").replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()}),
       })
     
     }
@@ -50,17 +51,17 @@ export default class HomeScreen extends React.Component {
             originWhitelist={['*']}
             injectedJavaScript={`
               window.isWebView = true;
-              setTimeout(() => {
-                const links = document.getElementsByTagName('a')
-                for (i = 0; i < links.length; i++) { 
-                  links[i].addEventListener('click', e => {
-                    e.preventDefault()
-                    const link = e.currentTarget.href.split('/')
-                    const slug = link[link.length - 1]
-                    window.ReactNativeWebView.postMessage(slug)
-                  }
-                )}
-              }, 500)
+              // setTimeout(() => {
+              //   const links = document.getElementsByTagName('a')
+              //   for (i = 0; i < links.length; i++) { 
+              //     links[i].addEventListener('click', e => {
+              //       e.preventDefault()
+              //       const link = e.currentTarget.href.split('/')
+              //       const slug = link[link.length - 1]
+              //       window.ReactNativeWebView.postMessage(slug)
+              //     }
+              //   )}
+              // }, 500)
               true;
             `}
             onMessage={this.handleNavigation}
