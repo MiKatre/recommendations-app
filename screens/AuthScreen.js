@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
 
 import {logInUser} from '../redux/actions'
 import LoginForm from '../components/LoginForm';
+import { api } from '../constants/Urls';
 
 class AuthScreen extends React.Component {
   static propTypes = {
@@ -60,7 +61,7 @@ class AuthScreen extends React.Component {
             <WebView
               originWhitelist={['*']}
               injectedJavaScript={runFirst}
-              source={{ uri: 'https://5dc04ffecd9d620008e3f7bf--cinetimes.netlify.com/user/login?d=rnwebview' }}
+              source={{ uri: `${api}/user/login?d=rnwebview` }}
               style={{ flex: 1, height: '100%' }}
               onLoad={syntheticEvent => {
                 this.setState({isLoading: false})

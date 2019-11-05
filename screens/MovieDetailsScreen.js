@@ -2,6 +2,7 @@ import React from 'react'
 import { ActivityIndicator, Image, ScrollView, View, StyleSheet, Text } from 'react-native'
 import { fetchMovieData } from '../api'
 import { WebView } from 'react-native-webview';
+import { api } from '../constants/Urls';
 
 const processRatings = rating => (        
   <View key={rating.Value}>
@@ -92,7 +93,7 @@ class MovieDetailsScreen extends React.Component {
           <WebView
               originWhitelist={['*']}
               injectedJavaScript={runFirst}
-              source={{ uri: `https://5dc04ffecd9d620008e3f7bf--cinetimes.netlify.com/${slug}?d=rnwebview` }}
+              source={{ uri: `${api}/${slug}?d=rnwebview` }}
               style={{ marginTop: 0, flex: 1, height: '100%' }}
               onLoad={syntheticEvent => {
                 this.setState({isLoading: false})

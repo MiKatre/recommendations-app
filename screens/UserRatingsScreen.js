@@ -1,6 +1,7 @@
 import React from 'react';
 import { AsyncStorage, ActivityIndicator, Button, View, StatusBar} from 'react-native'
 import { WebView } from 'react-native-webview';
+import { api } from '../constants/Urls';
 
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
@@ -50,7 +51,7 @@ export default class SettingsScreen extends React.Component {
             <WebView
               originWhitelist={['*']}
               injectedJavaScript={runFirst}
-              source={{ uri: `https://5dc04ffecd9d620008e3f7bf--cinetimes.netlify.com/user/${username}/ratings?d=rnwebview` }}
+              source={{ uri: `${api}/user/${username}/ratings?d=rnwebview` }}
               style={{ flex: 1, height: '100%' }}
               onLoad={syntheticEvent => {
                 this.setState({isLoading: false})
