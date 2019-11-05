@@ -29,7 +29,13 @@ class MovieDetailsScreen extends React.Component {
   }
 
   componentDidMount() {
-    this.getMovieData()
+    if (this.props.navigation.state.params.id) {
+      this.getMovieData()
+    } else {
+      this.setState({
+        slug: this.props.navigation.state.params.slug,
+      })
+    }
   }
 
   getMovieData = () => {
@@ -53,7 +59,11 @@ class MovieDetailsScreen extends React.Component {
 
     let processedRatings = ratings ? ratings.map(processRatings) : null
 
-    if (!(this.state.poster && this.state.title)) return (<Text>Loading...</Text>)
+    if (!(this.state.poster && this.state.title) && !this.state.slug) return (
+      <View style={{display: 'flex', paddingTop: 5, backgroundColor: '#FFF'}}>
+        <ActivityIndicator size="small" color="#346bc2"/>
+      </View>
+    )
     const runFirst = `
     window.isWebView = true;
     true; // note: this is required, or you'll sometimes get silent failures
