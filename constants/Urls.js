@@ -1,1 +1,1 @@
-export const api = 'https://5dc1ab1c0454fd000930480a--cinetimes.netlify.com'
+export const api = 'https://cinetimes.org'

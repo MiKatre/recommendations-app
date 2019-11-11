@@ -32,8 +32,8 @@ export default class HomeScreen extends React.Component {
     if (event.nativeEvent.data) {
       const {title, slug} = JSON.parse(event.nativeEvent.data)
       this.props.navigation.navigate('MovieDetails', {
-        slug,
         title,
+        slug,
         // title: slug.split("-").join(" ").replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()}),
       })
     

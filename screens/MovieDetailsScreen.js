@@ -103,13 +103,14 @@ class MovieDetailsScreen extends React.Component {
           <WebView
               originWhitelist={['*']}
               injectedJavaScript={runFirst}
-              source={{ uri: `${api}/${slug}?d=rnwebview` }}
+              source={{ uri: `${api}/t/${slug}?d=rnwebview` }}
               style={{ marginTop: 0, flex: 1, height: '100%' }}
+              renderError={errorName => <Text>Erreur {errorName}. Vérifiez votre connexion internet.</Text>}
               onLoad={syntheticEvent => {
                 this.setState({isLoading: false})
               }}
-              startInLoadingState={true}
-              renderLoading={() => <ActivityIndicator size="small" color="#346bc2"/>}
+              // startInLoadingState={true}
+              // renderLoading={() => <ActivityIndicator size="small" color="#346bc2"/>}
             />
         </View>
 
