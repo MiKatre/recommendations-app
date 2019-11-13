@@ -109,6 +109,7 @@ class MovieDetailsScreen extends React.Component {
               onLoad={syntheticEvent => {
                 this.setState({isLoading: false})
               }}
+              allowsFullscreenVideo={true}
               // startInLoadingState={true}
               // renderLoading={() => <ActivityIndicator size="small" color="#346bc2"/>}
             />

@@ -41,7 +41,7 @@ class SettingsScreen extends React.Component {
 
     const { username, isLoading } = this.state
     return (
-      <View style={{ backgroundColor: '#fafafa' }}>
+      <View>
         <StatusBar barStyle="dark-content" backgroundColor="#ecf0f1" />
         <View style={{ height: '100%', backgroundColor: '#fafafa' }} >
             {/* <Button title="Sign me out" onPress={this.signOutAsync} /> */}

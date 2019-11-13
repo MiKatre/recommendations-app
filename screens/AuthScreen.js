@@ -61,7 +61,7 @@ class AuthScreen extends React.Component {
             <WebView
               originWhitelist={['*']}
               injectedJavaScript={runFirst}
-              source={{ uri: `${api}/user/login?d=rnwebview` }}
+              source={{ uri: `${api}/user/login?d=rnwebview&logout=true` }}
               style={{ flex: 1, height: '100%' }}
               onLoad={syntheticEvent => {
                 this.setState({isLoading: false})
